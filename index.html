@@ -1,10 +1,105 @@
-<html><head>
-    <title>Roblox Sandbox</title>
-    <!-- stuff -->
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox GUI to Web Test</title>
     <link href="/style.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body>
-    Sandbox is a game on <a href="https://www.roblox.com/">Roblox</a> that lets you build anything, in a public Sandbox or a private World!<br>
-    You can directly link to worlds by copying their id and adding the website's url below it, like robloxsandbox.github.io/1234567890.<br><br>
-    <button><a href="https://www.roblox.com/games/start?placeId=109254229707276&amp;launchData=Website">Hub</a></button> | <button><a href="https://www.roblox.com/games/start?placeId=109254229707276&amp;launchData=Public">Public Sandbox</a></button>
+    <div class="screen-gui">
+        <!-- 1. Sandbox Logo & Splash Block Asset Module Container -->
+        <div class="sandbox-logo-frame">
+            <img src="/assets/logo.png" alt="Sandbox Logo" class="logo-image-label" />
+            <div class="splash-text">Create your sandbox</div>
+        </div>
+
+        <!-- 2. Main Page Panel Frame Container Frame space context layout -->
+        <div class="discover-page-frame">
+            
+            <!-- 3. Integrated Panel Header Navigation Block -->
+            <div class="discover-header">
+                <div class="header-title">Discover Worlds</div>
+                
+                <input type="text" class="search-box" id="searchBar" placeholder="Search worlds...">
+                
+                <div class="sort-container">
+                    <div class="buttons-group">
+                        <button class="sort-btn popular">Popular</button>
+                        <button class="sort-btn newest">Newest</button>
+                    </div>
+                    <button class="refresh-btn" title="Refresh">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17.65 6.35A7.95 7.95 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.07 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. Scrolling Frame Container wrapper grid -->
+            <div class="world-grid-scrolling-frame" id="worldGrid">
+                
+                <!-- Tile Module Entry 1 -->
+                <div class="world-card">
+                    <div class="card-inside">
+                        <div class="card-thumbnail" style="background-image: url('https://rbxcdn.com');">
+                            <div class="thumbnail-text-label">Sandbox Test World</div>
+                        </div>
+                        <div class="card-creator">by NotCraxel</div>
+                        <div class="card-description">Create your own sandbox inside our completely revamped system framework workspace asset engine template.</div>
+                        <button class="card-btn play-btn">Join</button>
+                        <button class="card-btn view-btn">View</button>
+                        <button class="card-btn report-btn">Report</button>
+                    </div>
+                </div>
+
+                <!-- Tile Module Entry 2 -->
+                <div class="world-card">
+                    <div class="card-inside">
+                        <div class="card-thumbnail" style="background-image: url('https://rbxcdn.com');">
+                            <div class="thumbnail-text-label">Logic Array Testing Grounds</div>
+                        </div>
+                        <div class="card-creator">by OnlyTwentyCharacters</div>
+                        <div class="card-description">Giant circuit automation maps and running dynamic calculator models.</div>
+                        <button class="card-btn play-btn">Join</button>
+                        <button class="card-btn view-btn">View</button>
+                        <button class="card-btn report-btn">Report</button>
+                    </div>
+                </div>
+
+                <!-- Tile Module Entry 3 -->
+                <div class="world-card">
+                    <div class="card-inside">
+                        <div class="card-thumbnail" style="background-image: url('https://rbxcdn.com');">
+                            <div class="thumbnail-text-label">Advanced Physics Obby</div>
+                        </div>
+                        <div class="card-creator">by DumpWanderer</div>
+                        <div class="card-description">Testing out velocity matrices and hinge constraints to the complete limits.</div>
+                        <button class="card-btn play-btn">Join</button>
+                        <button class="card-btn view-btn">View</button>
+                        <button class="card-btn report-btn">Report</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Basic Search Functionality Setup -->
+    <script>
+        const searchBar = document.getElementById('searchBar');
+        const cards = document.querySelectorAll('.world-card');
+
+        searchBar.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const title = card.querySelector('.thumbnail-text-label').textContent.toLowerCase();
+                const description = card.querySelector('.card-description').textContent.toLowerCase();
+                if (title.includes(query) || description.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
 </body></html>
