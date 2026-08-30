@@ -1,38 +1,339 @@
-body {
-  background-color: #101218;
-  color: white;
-  font-family: 'Open Sans', sans-serif;
-}
+        /* Base Viewport Space matching Roblox ScreenGui Canvas behavior */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a; /* Dark void backdrop to emulate layout test environments */
+            font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-y: auto; /* Allow full viewport flow if content exceeds viewport boundaries */
+        }
 
-h1 {
-  text-align: center;
-}
+        /* Master Viewport Layout Wrapper */
+        .screen-gui {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0; /* Padding at top and bottom of screen bounds */
+            box-sizing: border-box;
+            gap: 25px; /* Explicit structural layout offset distance between logo block and frame container */
+        }
 
-h2 {
-  text-align: center;
-}
+        /* ==========================================================================
+           1. LOGO MODULE (Path: WorldGui.Sandbox)
+           ========================================================================== */
+        .sandbox-logo-frame {
+            position: relative;
+            width: 65.2%; /* Size Scale Factor: XS 0.651989043 */
+            height: 180px; /* Locked maximum baseline scale context height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            flex-shrink: 0;
+        }
 
-h3 {
-  text-align: center;
-}
+        .logo-image-label {
+            width: 100%;
+            height: 100%;
+            /* Roblox Image Asset Endpoint Spliced In */
+            background-image: url('https://roblox.com');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
 
-button {
-  background-color: #151723;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  border-radius: 8px;
-  transition-duration: 0.4s;
-}
+        .splash-text {
+            margin-top: -15px; /* Offset spacing to pull text flush up with the main image frame boundary */
+            width: 100%;
+            font-weight: 900;
+            font-style: italic;
+            text-align: center;
+            font-size: 2.2vw; /* Dynamically scales down based on browser sizing metrics */
+            
+            /* TextColor3 properties parsed from Lua dump binary metadata */
+            color: rgb(234, 233, 187);
+            
+            /* Text UIStroke mapping definitions (Thickness: 2.7, Color: 0.533, 0.509, 0.301) */
+            -webkit-text-stroke: 2.7px rgb(136, 130, 77);
+            filter: drop-shadow(0px 3px 2px rgba(0,0,0,0.6));
+            white-space: nowrap;
+        }
 
-button:hover {
-  background-color: #202228;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  border-radius: 8px;
-}
+        /* ==========================================================================
+           2. DISCOVER FRAME CONTAINER (Path: WorldGui.DiscoverPage)
+           ========================================================================== */
+        .discover-page-frame {
+            position: relative;
+            width: 86.8%; /* Size Scale Factor: XS 0.868382275 */
+            height: 650px; /* Absolute viewport standard dimension context scale height */
+            
+            /* BackgroundColor3 configurations */
+            background-color: rgb(234, 233, 187);
+            
+            /* UIStroke definitions (Thickness: 4.1, Color: 0.572, 0.552, 0.345) */
+            border: 4.1px solid rgb(146, 141, 88);
+            
+            /* UIShadow properties mapped (BlurRadius: 20, Color: 0,0,0) */
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+            
+            box-sizing: border-box;
+            border-radius: 4px;
+            overflow: hidden; /* Clamp grid child assets within the clean panel borders */
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+           3. PANEL HEADER COMPONENT (Path: WorldGui.DiscoverPage.Header)
+           ========================================================================== */
+        .discover-header {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 8.78%; /* Size Scale Factor: YS 0.0848891139 */
+            
+            /* BackgroundColor3 mapping context */
+            background-color: rgb(54, 50, 34);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2%;
+        }
+
+        /* Path: WorldGui.DiscoverPage.Header.Title */
+        .header-title {
+            color: rgb(221, 220, 177); /* TextColor3 properties map */
+            font-size: 1.4vw;
+            font-weight: bold;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        /* Path: WorldGui.DiscoverPage.Header.SearchBox */
+        .search-box {
+            width: 25%; /* Size Sizing Scale: XS 0.25 */
+            height: 55%; /* Size Sizing Scale: YS 0.55 */
+            background-color: rgb(234, 233, 187); /* BackgroundColor3 block */
+            color: rgb(54, 50, 34); /* TextColor3 block */
+            border: 1px solid rgb(27, 42, 53); /* BorderColor3 configuration layout */
+            outline: none;
+            box-sizing: border-box;
+            padding-left: 10px; /* UIPadding property injection */
+            border-radius: 6px; /* UICorner component implementation layout */
+            font-size: 0.9vw;
+        }
+
+        .search-box::placeholder {
+            color: rgb(150, 145, 100); /* PlaceholderColor3 mapping context values */
+        }
+
+        /* Path: WorldGui.DiscoverPage.Header.SortContainer1 */
+        .sort-container {
+            width: 32.8%; /* Size Sizing Scale: XS 0.328001589 */
+            height: 55%; /* Size Sizing Scale: YS 0.55 */
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 5px; /* UIListLayout Padding layout item token */
+            box-sizing: border-box;
+        }
+
+        /* Path: WorldGui.DiscoverPage.Header.SortContainer1.A_SortContainer */
+        .buttons-group {
+            display: flex;
+            height: 100%;
+            gap: 8px; /* Inner Child UIListLayout layout node constraints */
+        }
+
+        .sort-btn {
+            height: 100%;
+            border: 1px solid rgb(27, 42, 53);
+            border-radius: 6px;
+            color: rgb(221, 220, 177);
+            font-weight: bold;
+            font-size: 0.9vw;
+            cursor: pointer;
+            box-sizing: border-box;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.1s ease;
+        }
+
+        .sort-btn.popular {
+            background-color: rgb(146, 141, 88); /* Default Active Selection color profile mapping override */
+        }
+
+        .sort-btn.newest {
+            background-color: rgb(38, 35, 24); /* Standard Default non-active item button space background */
+        }
+
+        .sort-btn:hover {
+            filter: brightness(1.2); /* Emulates engine-level button click highlights */
+        }
+
+        /* Path: WorldGui.DiscoverPage.Header.SortContainer1.A_Refresh */
+        .refresh-btn {
+            height: 100%;
+            aspect-ratio: 1 / 1; /* UIAspectRatioConstraint forced aspect rendering map */
+            background-color: rgb(38, 35, 24);
+            border: 1px solid rgb(27, 42, 53);
+            border-radius: 50%; /* Scale 1, Offset 0 configuration conversion space */
+            cursor: pointer;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .refresh-btn svg {
+            width: 60%;
+            height: 60%;
+            fill: rgb(221, 220, 177);
+        }
+
+        .refresh-btn:hover {
+            filter: brightness(1.2);
+        }
+
+        /* ==========================================================================
+           4. GRID AREA (Path: WorldGui.DiscoverPage.WorldGrid.ScrollingFrame)
+           ========================================================================== */
+        .world-grid-scrolling-frame {
+            position: absolute;
+            left: 0;
+            top: 8.78%;
+            width: 100%;
+            height: 91.22%;
+            box-sizing: border-box;
+            padding: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            
+            /* UIListLayout setup mapping configurations wrapper logic */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-content: flex-start;
+            gap: 15px; 
+        }
+
+        /* Web Custom Scrollbar mapping to match Roblox engine layout look */
+        .world-grid-scrolling-frame::-webkit-scrollbar {
+            width: 12px; /* ScrollBarThickness value parsing */
+        }
+        .world-grid-scrolling-frame::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .world-grid-scrolling-frame::-webkit-scrollbar-thumb {
+            background: rgba(129, 123, 73, 0.61); /* ScrollBarImageColor3 blended parameter block */
+            border-radius: 6px;
+        }
+
+        /* ==========================================================================
+           5. DISPLAY TILES (Path: ...Template Template instances layout)
+           ========================================================================== */
+        .world-card {
+            width: calc(33.33% - 10px); /* Size Sizing bounds: SizeConstraint token calculations */
+      height: 280px; /* Static structural absolute dimension bounding mapping context */
+            box-sizing: border-box;
+        }
+
+        .card-inside {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(115, 106, 73); /* Inside frame Color component configuration */
+            border-radius: 8px; /* UICorner properties layout mapping node */
+            border: 1px solid rgb(27, 42, 53);
+            position: relative;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .card-thumbnail {
+            width: 100%;
+            height: 54%;
+            background-color: rgb(234, 233, 187);
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .thumbnail-text-label {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1vw;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .card-creator {
+            color: rgb(221, 220, 177);
+            font-size: 0.8vw;
+            margin-top: 6px;
+            font-weight: bold;
+        }
+
+        .card-description {
+            color: #ffffff;
+            opacity: 0.85;
+            font-size: 0.75vw;
+            margin-top: 4px;
+            height: 36px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Card Button Elements map configuration definitions block */
+        .card-btn {
+            position: absolute;
+            bottom: 10px;
+            height: 28px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.75vw;
+            cursor: pointer;
+            box-sizing: border-box;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn {
+            left: 10px;
+            width: 42%;
+            background-color: rgb(88, 130, 52);
+        }
+
+        .view-btn {
+            left: 50%;
+            width: 22%;
+            background-color: rgb(29, 31, 38);
+        }
+
+        .report-btn {
+            right: 10px;
+            width: 22%;
+            background-color: rgb(120, 50, 50);
+        }
+
+        .card-btn:hover {
+            filter: brightness(1.2);
+        }
